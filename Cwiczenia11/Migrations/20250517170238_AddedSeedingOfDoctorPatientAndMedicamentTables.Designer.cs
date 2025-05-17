@@ -4,6 +4,7 @@ using Cwiczenia11.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Cwiczenia11.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20250517170238_AddedSeedingOfDoctorPatientAndMedicamentTables")]
+    partial class AddedSeedingOfDoctorPatientAndMedicamentTables
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -47,7 +50,7 @@ namespace Cwiczenia11.Migrations
 
                     b.HasKey("IdDoctor");
 
-                    b.ToTable("Doctor");
+                    b.ToTable("Doctors");
 
                     b.HasData(
                         new
@@ -84,7 +87,7 @@ namespace Cwiczenia11.Migrations
 
                     b.HasKey("IdMedicament");
 
-                    b.ToTable("Medicament");
+                    b.ToTable("Medicaments");
 
                     b.HasData(
                         new
@@ -126,7 +129,7 @@ namespace Cwiczenia11.Migrations
 
                     b.HasKey("IdPatient");
 
-                    b.ToTable("Patient");
+                    b.ToTable("Patients");
 
                     b.HasData(
                         new
@@ -171,7 +174,7 @@ namespace Cwiczenia11.Migrations
 
                     b.HasIndex("IdPatient");
 
-                    b.ToTable("Prescription");
+                    b.ToTable("Prescriptions");
                 });
 
             modelBuilder.Entity("Cwiczenia11.Models.PrescriptionMedicament", b =>

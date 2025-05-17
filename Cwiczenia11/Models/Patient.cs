@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Cwiczenia11.Models;
 
+[Table("Patient")]
 public class Patient
 {
     [Key]
