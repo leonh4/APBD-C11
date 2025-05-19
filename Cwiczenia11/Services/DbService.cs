@@ -53,6 +53,8 @@ public class DbService : IDbService
             IdPatient = prescription.Patient.IdPatient,
             IdDoctor = prescription.Doctor.IdDoctor,
         });
+        
+        await _context.SaveChangesAsync();
     }
 
     public bool CheckDates(CreatePrescriptionDTO prescription)
