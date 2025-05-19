@@ -5,11 +5,13 @@ namespace Cwiczenia11.Services;
 
 public interface IDbService
 {
-    Task AddPrescription(CreatePrescriptionDTO prescription);
+    Task AddPrescriptionAsync(CreatePrescriptionDTO prescription);
     
     bool CheckDates(CreatePrescriptionDTO prescription);
     
-    Task<bool> DoesMedicamentExist(int IdMedicament);
+    Task<bool> DoesMedicamentExistAsync(int IdMedicament);
     
     bool DoesPrescriptionExceedMedicamentLimit(CreatePrescriptionDTO prescription);
+    
+    Task<GetPatientWithPrescriptionsDTO> GetPatientAsync(int idPatient);
 }

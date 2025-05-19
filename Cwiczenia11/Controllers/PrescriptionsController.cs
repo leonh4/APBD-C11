@@ -19,17 +19,17 @@ public class PrescriptionsController : ControllerBase
 
 
     [HttpPost]
-    public async Task<IActionResult> AddPrescription([FromBody] CreatePrescriptionDTO prescription)
+    public async Task<IActionResult> AddPrescriptionAsync([FromBody] CreatePrescriptionDTO prescription)
     {
         if (!ModelState.IsValid) return BadRequest(ModelState);
         if (!_dbService.CheckDates(prescription)) return BadRequest("Due date has to be before date");
         foreach (MedicamentDto medicament in prescription.Medicaments)
         {
-            if (! await _dbService.DoesMedicamentExist(medicament.IdMedicament)) return BadRequest($"Medicament with Id {medicament.IdMedicament} doesn't exist");
+            if (! await _dbService.DoesMedicamentExistAsync(medicament.IdMedicament)) return BadRequest($"Medicament with Id {medicament.IdMedicament} doesn't exist");
         }
-        if (!_dbService.DoesPrescriptionExceedMedicamentLimit(prescription)) return BadRequest("Prescription exceeds the limit of 10 medicaments");
+        if (_dbService.DoesPrescriptionExceedMedicamentLimit(prescription)) return BadRequest("Prescription exceeds the limit of 10 medicaments");
         
-        _dbService.AddPrescription(prescription);
+        await _dbService.AddPrescriptionAsync(prescription);
         return Created();
     }
 }

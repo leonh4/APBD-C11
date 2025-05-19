@@ -7,12 +7,17 @@ namespace Cwiczenia11.Controllers;
 [Route("api/[controller]")]
 public class PatientsController : ControllerBase
 {
-    private readonly DbService _dbService;
+    private readonly IDbService _dbService;
 
-    public PatientsController(DbService dbService)
+    public PatientsController(IDbService dbService)
     {
         _dbService = dbService;
     }
-    
-    
+
+    [HttpGet("{id:int}")]
+    public async Task<IActionResult> GetAsync([FromRoute] int id)
+    {
+        var patient = await _dbService.GetPatientAsync(id);
+        return Ok(patient);
+    }
 }
