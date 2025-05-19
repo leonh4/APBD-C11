@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Cwiczenia11.Services;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Cwiczenia11.Controllers;
 
@@ -6,5 +7,12 @@ namespace Cwiczenia11.Controllers;
 [Route("api/[controller]")]
 public class PatientsController : ControllerBase
 {
+    private readonly DbService _dbService;
+
+    public PatientsController(DbService dbService)
+    {
+        _dbService = dbService;
+    }
+    
     
 }

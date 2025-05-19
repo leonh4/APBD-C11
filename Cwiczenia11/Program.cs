@@ -1,4 +1,5 @@
 using Cwiczenia11.Data;
+using Cwiczenia11.Services;
 using Microsoft.EntityFrameworkCore;
 
 namespace Cwiczenia11;
@@ -16,6 +17,7 @@ public class Program
         {
             opt.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
         });
+        builder.Services.AddScoped<IDbService, DbService>();
 
         // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
         builder.Services.AddOpenApi();
